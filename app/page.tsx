@@ -34,9 +34,9 @@ export default function Home() {
 
   const [form ,setForm] = useState(defaultData)
 
-  const {nombre,documento,curso } = form
+  const {nombres,documento,curso } = form
 
-  const hanldeSubmit = () => router.push(`/certificado?nombre=${nombre}&curso=${curso}&documento=${documento}`)
+  const hanldeSubmit = () => router.push(`/certificado?nombre=${nombres}&curso=${curso}&documento=${documento}`)
 
   const handleChange = (e:any) => setForm({...form,[e.target.name]:e.target.value})
   console.log(form)
