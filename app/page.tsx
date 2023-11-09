@@ -2,7 +2,7 @@
 import Image from 'next/image'
 import { Input } from '@nextui-org/input'
 import { Autocomplete, AutocompleteItem } from "@nextui-org/autocomplete";
-
+import {Button } from "@nextui-org/button"
 import { useRouter } from 'next/navigation'
 
 
