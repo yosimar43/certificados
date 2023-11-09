@@ -3,13 +3,14 @@ import Image from 'next/image'
 import { Input } from '@nextui-org/input'
 import { Autocomplete, AutocompleteItem } from "@nextui-org/autocomplete";
 
-
+import { useRouter } from 'next/navigation'
 
 
 
 
 export default function Home() {
 
+  const router = useRouter()
 
   const grados = [];
 
@@ -21,7 +22,7 @@ export default function Home() {
       });
     }
   }
-
+  const hanldeSubmit = e => router.push(`/certificados?nombre${"hola"}`)
 
   const documentos = [
     {
@@ -59,13 +60,13 @@ export default function Home() {
       <main className="grid grid-cols-4 gap-6   gap-y-2 min-h-screen p-24 bg-white w-[80%] mx-auto">
         <p className="col-span-2  text-3xl ">DATOS DEL ESTUDIANTE</p>
         <Image
-        className="col-span-2 "
-        src="/logo.webp"
-        width={178}
-        height={51}
-        alt="Picture of the author" />
+          className="col-span-2 "
+          src="/logo.webp"
+          width={178}
+          height={51}
+          alt="Picture of the author" />
 
-        <Input type="text" variant="underlined" label="Nombres" placeholder="Nombre completo del estudiante." name="E-nombre" className="col-span-2" />
+        <Input type="text" variant="underlined" label="Nombres" placeholder="Nombre completo del estudiante." name="nombre" className="col-span-2" />
         <Input type="text" variant="underlined" label="Apellidos" placeholder="Apellido completo del estudiante." className="col-span-2" />
         <Input type="email" variant="underlined" label="Correo electronico" placeholder="Correo institucional o personal." className="col-span-2" />
         <Input type="text" variant="underlined" label="Direccion" placeholder="Dirrecion actual." className="col-span-2" />
@@ -89,7 +90,9 @@ export default function Home() {
         </Autocomplete>
 
         <Input type="number" variant="underlined" label="Curso" placeholder="Curso al que ingresa. -> 11-02" className="col-span-2" />
-
+        <Button className="col-span-2 col-start-2" color="primary" variant="ghost" onPress={hanldeSubmit}>
+          Guardar registro
+        </Button >
       </main>
     </form>
   )

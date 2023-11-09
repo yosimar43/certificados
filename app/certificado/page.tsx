@@ -12,6 +12,7 @@ export default function Page() {
  
   const nombre = searchParams.get('nombre')?? ""
   const curso = searchParams.get("curso")??""
+  const documento = searchParams.get("documento")??""
  
   const pdfRef = useRef(null)  ;
   const [isClient, setIsClient] = useState(false)
@@ -51,7 +52,7 @@ export default function Page() {
           <p>
             Estimado(a) <strong  className="italic">{
               nombre}
-              </strong>, Por medio del presente documento,
+              </strong>identificado con {documento}, Por medio del presente documento,
             le certificamos que se encuentra matriculado(a)<strong className="italic"> {curso} </strong>{" "} en el programa de
             aprendizaje en el <strong className="italic"> CODEMA I.E.D. </strong>{" "}
             La matrícula se realizó el{" "}
