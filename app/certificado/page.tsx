@@ -13,13 +13,13 @@ export default function Page() {
   const nombre = searchParams.get('nombre')?? ""
   const curso = searchParams.get("curso")??""
  
-  const pdfRef = useRef(null);
+  const pdfRef = useRef(null)  ;
   const [isClient, setIsClient] = useState(false)
   useEffect(() => { setIsClient(true) }, [])
 
   const dowloadPDF = () => {
     const capture = pdfRef.current;
-    html2canvas(capture).then((canvas) => {
+    html2canvas(capture as unknown as HTMLElement).then((canvas) => {
       const imgData = canvas.toDataURL("/codema.jpeg");
       const doc = new jsPDF("l", "mm", "a4");
       const componentWidth = doc.internal.pageSize.getWidth();
