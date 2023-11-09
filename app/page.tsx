@@ -22,7 +22,7 @@ export default function Home() {
       });
     }
   }
-  const hanldeSubmit = e => router.push(`/certificados?nombre${"hola"}`)
+  const hanldeSubmit = () => router.push(`/certificados?nombre${"hola"}`)
 
   const documentos = [
     {
