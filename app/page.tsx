@@ -3,6 +3,7 @@ import Image from 'next/image'
 import { Input } from '@nextui-org/input'
 import { Autocomplete, AutocompleteItem } from "@nextui-org/autocomplete";
 import {Button } from "@nextui-org/button"
+import {useState}from "react"
 import { useRouter } from 'next/navigation'
 
 
@@ -22,7 +23,23 @@ export default function Home() {
       });
     }
   }
-  const hanldeSubmit = () => router.push(`/certificados?nombre${"hola"}`)
+
+  const defaultData = {
+    nombres:"",
+    apellidos:"",
+    documento:"",
+    curso:""
+
+  }
+
+  const [form ,setForm] = useState(defaultData)
+
+  const {nombre,documento,curso } = form
+
+  const hanldeSubmit = () => router.push(`/certificado?nombre=${nombre}&curso=${curso}&documento=${documento}`)
+
+  const handleChange = (e:any) => setForm({...form,[e.target.name]:e.target.value})
+  console.log(form)
 
   const documentos = [
     {
@@ -66,10 +83,10 @@ export default function Home() {
           height={51}
           alt="Picture of the author" />
 
-        <Input type="text" variant="underlined" label="Nombres" placeholder="Nombre completo del estudiante." name="nombre" className="col-span-2" />
-        <Input type="text" variant="underlined" label="Apellidos" placeholder="Apellido completo del estudiante." className="col-span-2" />
+        <Input type="text" variant="underlined" label="Nombres" placeholder="Nombre completo del estudiante." name="nombres" className="col-span-2" onChange={handleChange} />
+        <Input type="text" variant="underlined" label="Apellidos" placeholder="Apellido completo del estudiante." className="col-span-2" name="apellidos"  onChange={handleChange}/>
         <Input type="email" variant="underlined" label="Correo electronico" placeholder="Correo institucional o personal." className="col-span-2" />
-        <Input type="text" variant="underlined" label="Direccion" placeholder="Dirrecion actual." className="col-span-2" />
+        <Input type="text" variant="underlined" label="Direccion" placeholder="Direcion actual." className="col-span-2" />
         <Autocomplete
           variant="underlined"
           className="col-span-2"
@@ -79,7 +96,7 @@ export default function Home() {
           {(item) => <AutocompleteItem key={item.value}>{item.label}</AutocompleteItem>}
         </Autocomplete>
 
-        <Input type="number" variant="underlined" label="Documento" placeholder="Numero de documento actual." className="col-span-2" />
+        <Input type="number" variant="underlined" label="Documento" placeholder="Numero de documento actual." className="col-span-2" name="documento"  onChange={handleChange}/>
         <Autocomplete
           variant="underlined"
           className="col-span-2"
@@ -89,7 +106,7 @@ export default function Home() {
           {(item) => <AutocompleteItem key={item.value}>{item.label}</AutocompleteItem>}
         </Autocomplete>
 
-        <Input type="number" variant="underlined" label="Curso" placeholder="Curso al que ingresa. -> 11-02" className="col-span-2" />
+        <Input type="number" variant="underlined" label="Curso" placeholder="Curso al que ingresa. -> 11-02" className="col-span-2" name="curso"  onChange={handleChange}/>
         <Button className="col-span-2 col-start-2" color="primary" variant="ghost" onPress={hanldeSubmit}>
           Guardar registro
         </Button >
